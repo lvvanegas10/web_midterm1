@@ -2,15 +2,14 @@
 
 This is the midterm exam for Web development Fall 2018. The objective of this project is to 
 
-# Technologies 
+## Technologies 
 
-# How to run?
+## How to run?
 
-# About
+## About
 This project was developed by [Valeria Vanegas]( https://lvvanegas10.github.io)
 
-
-# License
+## License
 
 This project is under [MIT License](https://github.com/lvvanegas10/web_parcial/blob/master/LICENSE)
 
