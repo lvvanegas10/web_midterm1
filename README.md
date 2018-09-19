@@ -22,7 +22,7 @@ npm start
 `
 
 ## About
-This project was developed by [Valeria Vanegas]( https://lvvanegas10.github.io)
+This project was developed by [Valeria Vanegas](https://github.com/lvvanegas10/web_midterm1.git)
 
 ## License
 
