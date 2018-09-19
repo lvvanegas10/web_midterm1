@@ -10,7 +10,7 @@ This is the midterm exam for Web development Fall 2018. The objective of this pr
 
 1) Clone the proyect 
 `
-git clone http://github.com/lvvanegas10/web_midterm1
+git clone https://github.com/lvvanegas10/web_midterm1.git
 `
 2) Install dependencies 
 `
@@ -22,7 +22,7 @@ npm start
 `
 
 ## About
-This project was developed by [Valeria Vanegas](https://github.com/lvvanegas10/web_midterm1.git)
+This project was developed by [Valeria Vanegas](https://lvvanegas10.github.io)
 
 ## License
 
