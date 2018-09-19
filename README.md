@@ -3,7 +3,8 @@
 This is the midterm exam for Web development Fall 2018. The objective of this project is to 
 
 ## Technologies 
-* Nodejs with express framework
+* MongoDB
+* Nodejs with express framework and MongoDB Nodejs Driver 
 * Reactjs 
 
 ## How to run?
