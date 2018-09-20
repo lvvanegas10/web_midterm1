@@ -1,6 +1,6 @@
 # Midterm exam 2018-02
 
-This is the midterm exam for Web development Fall 2018. The objective of this project is to 
+This is the midterm exam for Web development Fall 2018. The objective of this project is to show data of 
 
 ## Technologies 
 * MongoDB
