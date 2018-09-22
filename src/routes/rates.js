@@ -54,6 +54,7 @@ function putVista(name, req, callback) {
 }
 
 app.put('/vis/:name', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
     let name = req.params.name;
     putVista(name, req, (data) => res.send(data));
 });

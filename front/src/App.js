@@ -37,8 +37,15 @@ class App extends Component {
             spec: dspec,
             data: dmyData,
             error: false,
-            errorData:false
+            errorData:false,
+            name: ''
         };
+    }
+
+    onChange(pN){
+        this.setState({
+            name: pN
+        });
     }
 
     onNewSpec(newSpec) {
@@ -92,8 +99,8 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <RateField />
-                <Save />
+                <Save changeName={this.onChange.bind(this)} data={this.state.data} spec={this.state.spec}/>
+                <RateField name={this.state.name}/>
                 <UploadFile update={this.onNewData.bind(this)} />
                 <this.showError error={this.state.error} />
                 <InputField defaultValue={JSON.stringify(dspec)} spec={this.onNewSpec.bind(this)} />

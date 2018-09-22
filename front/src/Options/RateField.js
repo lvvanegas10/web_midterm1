@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Rate, Input, Form, Button } from 'antd';
+import { message, Rate, Input, Form, Button } from 'antd';
 
 
 class RateField extends Component {
@@ -8,7 +8,9 @@ class RateField extends Component {
         super(props);
 
         this.state ={
-            empty: true
+            empty: true,
+            rate:0,
+            name: ''
         }
     }
 
@@ -26,10 +28,24 @@ class RateField extends Component {
         }
     }
 
-    sendRate(){
-
+    sendRate() { 
+        fetch(`/vis/${this.props.name}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                rate: this.state.rate,
+                autor: this.state.name,                
+            })
+        })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json.average);
+                message.success(`Success: the average is ${json["average"]}`);
+            });
     }
-    
+
     render() {
         return (
             <div>
@@ -40,7 +56,7 @@ class RateField extends Component {
 
                 <Button
                     type="primary"
-                    disabled={this.state.empty}
+                    disabled={this.state.empty || this.props.name === ''}
                     onClick={this.sendRate.bind(this)}
                 >
                     Send

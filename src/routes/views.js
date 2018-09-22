@@ -37,7 +37,8 @@ function postVista(req, callback) {
     });
 }
 
-app.post('/vis', (req, res) => {   
+app.post('/vis', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');   
     postVista(req, (data)=> res.send(data));
 });
 
