@@ -20,7 +20,9 @@ app.use(express.json());
 //================================
 app.use(express.static(path.join(__dirname, './front/build')));
 
-
+app.get('/', function(req, res){
+    res.sendFile('../index.html');
+});
 //================================
 // Static
 //================================
