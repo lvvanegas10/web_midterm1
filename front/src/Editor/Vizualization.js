@@ -27,13 +27,20 @@ class Visualization extends Component {
         vegaEmbed(this.div, this.props.spec, embed_opt)
             .catch(error => console.log(error, "ERROR"))
             .then((res) => {
-                res.view.insert('myData', myData).run();
+                let name = 'data'
+                if(this.props.spec.data.name !== undefined){
+                    name = this.props.spec.data.name;
+                }
+
+                console.log('aaa', name)
+                res.view.insert(name, this.props.data).run();
                 this.setState({
                     error: false
                 });
                 this.showError(this.props);
             })
             .catch(error => {
+                console.log(error);
                 this.setState({
                     error: true
                 });
@@ -53,14 +60,10 @@ class Visualization extends Component {
         this.updateVega();
     }
 
-    //componentDidUpdate() {
-    //  this.updateVega();
-    //}
-
     componentWillUpdate(prevProps) {
         if (this.props.spec !== prevProps.spec) {
             this.updateVega();
-        }
+        }        
     }
 
     render() {

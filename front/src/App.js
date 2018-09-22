@@ -13,7 +13,7 @@ const dspec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
     "description": "A simple bar chart with embedded data.",
     "data": {
-        "name": "myData"
+        "name": "data"
     },
     "mark": "bar",
     "encoding": {
@@ -22,14 +22,22 @@ const dspec = {
     }
 }
 
+const dmyData = [
+    { "a": "A", "b": 28 }, { "a": "B", "b": 55 }, { "a": "C", "b": 43 },
+    { "a": "D", "b": 91 }, { "a": "E", "b": 81 }, { "a": "F", "b": 53 },
+    { "a": "G", "b": 19 }, { "a": "H", "b": 87 }, { "a": "I", "b": 52 }
+];
+
+
 class App extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             spec: dspec,
-            error: false
+            data: dmyData,
+            error: false,
+            errorData:false
         };
     }
 
@@ -49,10 +57,34 @@ class App extends Component {
         }
     }
 
+    onNewData(newData) {
+        try {
+            let newDataJSON = JSON.parse(newData);
+            this.setState({
+                errorData: false,
+                data: newDataJSON
+            });
+            this.showError(this.props);
+        } catch (e) {
+            this.setState({
+                errorData:true
+            });
+            this.showErrorData(this.props); // error in the above string (in this case, yes)!
+        }
+    }
+
     showError(props) {
         const error = props.error;
         if (error) {
             return <Alert message="Error JSON is not valid" type="error" showIcon />;
+        }
+        return <div></div>;
+    }
+
+    showErrorData(props) {
+        const error = props.error;
+        if (error) {
+            return <Alert message="Error CSV is not valid" type="error" showIcon />;
         }
         return <div></div>;
     }
@@ -62,10 +94,10 @@ class App extends Component {
             <div className="App">
                 <RateField />
                 <Save />
-                <UploadFile />
+                <UploadFile update={this.onNewData.bind(this)} />
                 <this.showError error={this.state.error} />
                 <InputField defaultValue={JSON.stringify(dspec)} spec={this.onNewSpec.bind(this)} />
-                <Vizualization spec={this.state.spec} />
+                <Vizualization spec={this.state.spec} data={this.state.data}/>
             </div>
         );
     }

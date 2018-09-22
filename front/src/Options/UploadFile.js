@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Input } from 'antd';
 import Papa from 'papaparse'
+
 class UploadFile extends Component {
 
-    handleFiles = files => {
-        let fileJson = Papa.parse(files);
-
-        console.log(fileJson)
+    loadData() {
+        const file = this.div.files[0];
+        Papa.parse(file, {
+            header: true,
+            complete: (results) => {
+               this.props.update(results.data);
+               console.log(results.data)
+            },
+            error(error) {
+                console.log(error);
+            }
+        });
     }
 
     render() {
         return (
             <div>
-               <Input type="file" id="csvfile" onChange={this.handleFiles}/> 
+                <input type="file" onChange={this.loadData.bind(this)} ref={div => this.div = div} />
             </div>
         );
     }
 }
-
-UploadFile.propTypes = {
-
-};
 
 export default UploadFile;
