@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser());
+app.use(bodyParser.json())
 
 //================================
 // Requirements files
@@ -8,6 +12,8 @@ const path = require('path');
 require('./config/config');
 app.use(require('./routes/index'));
 app.use(require('./middleware/index'));
+app.use(express.json());
+
 
 //================================
 // Static
